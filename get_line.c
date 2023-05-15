@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * my_getline - custom version of getline()
