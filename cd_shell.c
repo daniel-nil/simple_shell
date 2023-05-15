@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * free_list - frees linked list
  * @head: a pointer to the head node of the list
