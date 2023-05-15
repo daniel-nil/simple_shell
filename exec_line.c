@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * allocate_buffer - allocates memory
