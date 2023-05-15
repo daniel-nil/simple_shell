@@ -1,6 +1,7 @@
 This is a simple shell project. It allows users to execute basic commands such as cd, ls, pwd, echo, and others.
 
-How to Use Simple Shell
+How to Use Simple Shell:
+
 To run this program, compile the code using gcc compiler below:
 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
