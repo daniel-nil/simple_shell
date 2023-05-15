@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * is_delim - searches for delimiters in our string
