@@ -104,17 +104,7 @@ void execute(char **tokens);
 int tokenize(char *input, char **tokens, int max_tokens);
 
 
-char **parse_input(char *line);
-int execute_command(char **args, char *path[]);
-char **get_path_directories();
-char *str_dup(char *str);
-char *get_PATH(char *args);
-void print_strings(char **strings);
-void print_list(LL *head);
 int execute_cd(char **tokens);
 char *expand_buffer(char *buf, size_t buf_size);
-int logical_operators(char **tokens);
-void print_aliases(void);
-void alias_command(char **args);
 
 #endif
