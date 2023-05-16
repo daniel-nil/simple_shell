@@ -1,32 +1,32 @@
 #include "main.h"
 
 /**
- * execute_builtins - handles builtin functions
+ * sh_exec_builtin - handles builtin functions
  * @tokens: tokenized commands
  * @env: contains values of environ
  */
-void execute_builtins(char **tokens, char **env)
+void sh_exec_builtin(char **tokens, char **env)
 {
-	if (my_strcmp(tokens[0], "exit") == 0)
+	if (sh_strcmp(tokens[0], "exit") == 0)
 	{
-		execute_exit(tokens);
+		sh_exit(tokens);
 	}
-	else if (my_strcmp(tokens[0], "env") == 0)
+	else if (sh_strcmp(tokens[0], "env") == 0)
 	{
-		execute_env(env);
-	}
-
-	else if (my_strcmp(tokens[0], "cd") == 0)
-	{
-		execute_cd(tokens);
+		sh_env(env);
 	}
 
-	else if (my_strcmp(tokens[0], "setenv") == 0)
+	else if (sh_strcmp(tokens[0], "cd") == 0)
 	{
-		shell_setenv(tokens);
+		sh_cdexec(tokens);
 	}
-	else if (my_strcmp(tokens[0], "unsetenv") == 0)
+
+	else if (sh_strcmp(tokens[0], "setenv") == 0)
 	{
-		shell_unsetenv(tokens);
+		sh_setenv(tokens);
+	}
+	else if (sh_strcmp(tokens[0], "unsetenv") == 0)
+	{
+		sh_unsetenv(tokens);
 	}
 }
