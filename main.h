@@ -35,76 +35,76 @@ typedef struct alias_node
 } alias_node;
 
 /* cd_shell.c*/
-LL *path_list();
-void add_node(LL **head_ref, char *str);
-void free_list(LL *head);
-char *_getenv(const char *name);
-char *find_executable(char *command, LL *path_list);
+LL *the_path();
+void the_node(LL **head_ref, char *str);
+void sh_freelist(LL *head);
+char *sh_getenv(const char *name);
+char *sh_finder(char *command, LL *path_list);
 
 /* env1.c*/
-int custom_putenv(char *str);
-char *custom_strchr(const char *str, int c);
-int custom_environSize(void);
+int sh_putenv(char *str);
+char *sh_strchr(const char *str, int c);
+int sh_envsize(void);
 
 /* env2.c*/
-int custom_setenv(const char *name, const char *value, int overwrite);
-int custom_unsetenv(const char *name);
+int sh_cus_setenv(const char *name, const char *value, int overwrite);
+int sh_cus_unsetenv(const char *name);
 
 /* error.c*/
-void shell_setenv(char **args);
-void shell_unsetenv(char **args);
-void execute_exit(char **tokens);
-void execute_env(char **env);
+void sh_setenv(char **args);
+void sh_unsetenv(char **args);
+void sh_exit(char **tokens);
+void sh_env(char **env);
+int sh_cdexec(char **tokens);
 
-/* error.c*/
-int is_empty_line(ssize_t len, char *buf);
-int handle_empty_line(char *buf, char **lineptr);
-void terminate_buffer(ssize_t len, char *buf);
-char *allocate_buffer(size_t buf_size);
+/* exec_line.c*/
+int sh_checkempty(ssize_t len, char *buf);
+int sh_handleempty(char *buf, char **lineptr);
+void sh_terminator(ssize_t len, char *buf);
+char *sh_buffer(size_t buf_size);
+char *sh_exbuffer(char *buf, size_t buf_size);
 
 /* get_builtin.c*/
-void execute_builtins(char **tokens, char **env);
+void sh_exec_builtin(char **tokens, char **env);
 
 /* get_line.c*/
-ssize_t my_getline(char **lineptr, size_t *n, int fd);
+ssize_t sh_getline(char **lineptr, size_t *n, int fd);
 
 /* split_shell.c*/
-unsigned int is_delim(char c, char *delim);
-char *my_strtok(char *srcString, char *delim);
+unsigned int sh_delim(char c, char *delim);
+char *sh_strtok(char *srcString, char *delim);
 
 /* cmd_exec.c*/
-int file_input(int argc, char **argv);
+int sh_writer(int argc, char **argv);
 
 /* cmd_exec2.c*/
-void handle_semicolon(char *input);
-int delim_tokenize(char *input, char **tokens, int max_tokens, char *delim);
+void sh_semicolon(char *input);
+int sh_del_token(char *input, char **tokens, int max_tokens, char *delim);
 
 /* get_help.c*/
-char *read_input(void);
-int getStringLength(const char *str);
-void printString(char *str);
-void writeStringToStderr(char *str);
-int my_strcmp(const char *str1, const char *str2);
+char *sh_reader(void);
+int sh_strlen(const char *str);
+void sh_printer(char *str);
+void sh_stderror(char *str);
+int sh_strcmp(const char *str1, const char *str2);
 
 /*get_help2*/
-char *concatenateStrings(char *str1, char *str2);
-char *myStrcpy(char *dest, const char *src);
-char *myStrcat(char *dest, const char *src);
-int myStrncmp(const char *s1, const char *s2, size_t n);
-char *my_strdup(const char *str);
+char *sh_constr(char *str1, char *str2);
+char *sh_strcpy(char *dest, const char *src);
+char *sh_strcat(char *dest, const char *src);
+int sh_strncmp(const char *s1, const char *s2, size_t n);
+char *sh_strdup(const char *str);
 
 /*get_help3*/
-void *my_memcpy(void *dest, const void *src, size_t n);
-void *my_realloc(void *ptr, size_t size);
-int printenv(void);
+void *sh_memcpy(void *dest, const void *src, size_t n);
+void *sh_realloc(void *ptr, size_t size);
+int shell_env(void);
 
 /*main.c*/
-char *command_checker(char **tokens);
+char *sh_checkercmd(char **tokens);
 void execute(char **tokens);
 int tokenize(char *input, char **tokens, int max_tokens);
 
 
-int execute_cd(char **tokens);
-char *expand_buffer(char *buf, size_t buf_size);
 
 #endif
