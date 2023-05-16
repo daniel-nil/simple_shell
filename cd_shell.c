@@ -9,10 +9,10 @@ void free_list(LL *head)
 
 	while (head != NULL)
 	{
-		temp = head;
-		head = head->next;
-		free(temp->str);
-		free(temp);
+		temp = head; /* store current head */
+		head = head->next; /* move to next node */
+		free(temp->str); /* free string */
+		free(temp); /* free node */
 	}
 }
 /**
@@ -22,12 +22,12 @@ void free_list(LL *head)
  */
 void add_node(LL **head_ref, char *str)
 {
-	LL *new_node = (LL *)malloc(sizeof(LL));
+	LL *new_node = (LL *)malloc(sizeof(LL)); /* allocate memory for new node */
 
-	new_node->str = str;
-	new_node->next = *head_ref;
-	*head_ref = new_node;
-  
+	new_node->str = str; /* assign string to new node */
+	new_node->next = *head_ref; /* make the new node point to the current head */
+	*head_ref = new_node; /* make the new node the new head */
+}
 /**
  * path_list - finds the path in env variable
  * Return: head node to the linked list
@@ -68,7 +68,6 @@ LL *path_list(void)
 
 	return (head);
 }
-
 /**
  * find_executable - checks if the file exists and is executable
  * @command: command being executed
@@ -88,7 +87,7 @@ char *find_executable(char *command, LL *path_list)
 	{
 		path = path_list->str;
 		path_len = getStringLength(path);
-		new_len = path_len + command_len + 2;
+		new_len = path_len + command_len + 2; /* +2 for the "/" and the '\0'*/
 		new_path = malloc(new_len * sizeof(char));
 		if (new_path == NULL)
 		{
@@ -98,17 +97,16 @@ char *find_executable(char *command, LL *path_list)
 		myStrcpy(new_path, path);
 		myStrcat(new_path, "/");
 		myStrcat(new_path, command);
-		if (access(new_path, X_OK) == 0)
+		if (access(new_path, X_OK) == 0) /*check if file exists and executable*/
 		{
 			executable_path = new_path;
 		break;
 		}
-		free(new_path);
+		free(new_path); /* the file does not exist, so we free the memory */
 		path_list = path_list->next;
 	}
 	return (executable_path);
 }
-
 /**
  * _getenv - gets the value stored in specified variable name
  * @name: Variable name
@@ -116,16 +114,18 @@ char *find_executable(char *command, LL *path_list)
  */
 char *_getenv(const char *name)
 {
-	int i, len;
-	char *env_val;
+	int i, len; /* i is used to traverse environ global variable */
+	char *env_val; /* string to store value of variable name e.g PATH="env_val" */
 
-	len = getStringLength(name);
+	len = getStringLength(name); /* length of variable name e.g ("PATH" = 4)*/
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		if (myStrncmp(name, environ[i], len) == 0 && environ[i][len] == '=')
+		/* if match found */
 		{
 			env_val = &environ[i][len + 1];
+		/* store value string  in env_val variable */
 			return (env_val);
 		}
 	}
