@@ -85,7 +85,7 @@ char *sh_finder(char *command, LL *path_list)
 
 	while (path_list != NULL)
 	{
-		path = the_path->str;
+		path = path_list->str;
 		path_len = sh_strlen(path);
 		new_len = path_len + command_len + 2;
 		new_path = malloc(new_len * sizeof(char));
@@ -103,7 +103,7 @@ char *sh_finder(char *command, LL *path_list)
 		break;
 		}
 		free(new_path);
-		the_path = the_path->next;
+		path_list = path_list->next;
 	}
 	return (executable_path);
 }
