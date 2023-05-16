@@ -12,7 +12,7 @@ char *read_input()
 	if (getline(&input, &input_size, stdin) == -1)
 	{
 		free(input);
-		return (NULL); /* end of file */
+		return (NULL);
 	}
 	return (input);
 }
