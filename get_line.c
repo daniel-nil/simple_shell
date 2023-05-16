@@ -1,10 +1,10 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stddef.h>
-#include <unistd.h>  /* for read() and STDIN_FILENO */
+#include <unistd.h>
 
 
-#define INIT_BUF_SIZE 128  /* initial size of the buffer */
+#define INIT_BUF_SIZE 128
 
 
 /**
