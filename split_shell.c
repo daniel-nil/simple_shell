@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * is_delim - searches for delimiters in our string
+ * sh_delim - searches for delimiters in our string
  * @c: chars in source string
  * @delim: delimiter charachter
  * Return: 0 or -1
  */
-unsigned int is_delim(char c, char *delim)
+unsigned int sh_delim(char c, char *delim)
 {
 	while (*delim != '\0')
 	{
@@ -18,12 +18,12 @@ unsigned int is_delim(char c, char *delim)
 }
 
 /**
- * my_strtok - clone of strtok()
+ * sh_strtok - clone of strtok()
  * @srcString: source string
  * @delim: delimiter
  * Return: 0 or -1
  */
-char *my_strtok(char *srcString, char *delim)
+char *sh_strtok(char *srcString, char *delim)
 {
 	static char *backup_string;
 	char *ret;
@@ -38,7 +38,7 @@ char *my_strtok(char *srcString, char *delim)
 	}
 	while (1)
 	{
-		if (is_delim(*srcString, delim))
+		if (sh_delim(*srcString, delim))
 		{
 			srcString++;
 			continue;
@@ -57,7 +57,7 @@ char *my_strtok(char *srcString, char *delim)
 			backup_string = srcString;
 			return (ret);
 		}
-		if (is_delim(*srcString, delim))
+		if (sh_delim(*srcString, delim))
 		{
 			*srcString = '\0';
 			backup_string = srcString + 1;
