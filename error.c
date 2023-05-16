@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * execute_exit - exit builtin
+ * sh_exit - exit builtin
  * @tokens: tokenized commands
  */
-void execute_exit(char **tokens)
+void sh_exit(char **tokens)
 {
 	int size = 0;
 	const char *error_msg;
@@ -16,7 +16,7 @@ void execute_exit(char **tokens)
 	if (size > 2)
 	{
 		error_msg = "Error: too many arguments\n";
-		write(STDERR_FILENO, error_msg, getStringLength(error_msg));
+		write(STDERR_FILENO, error_msg, sh_strlen(error_msg));
 	}
 	else if (size == 2)
 	{
@@ -29,16 +29,16 @@ void execute_exit(char **tokens)
 }
 
 /**
- * execute_env - env builtin
+ * sh_env - env builtin
  * @env: environment variable
  */
-void execute_env(char **env)
+void sh_env(char **env)
 {
 	while (*env != NULL)
 	{
 		size_t len;
 
-		len = getStringLength(*env);
+		len = sh_strlen(*env);
 		write(STDOUT_FILENO, *env, len);
 		write(STDOUT_FILENO, "\n", 1);
 		env++;
@@ -46,11 +46,11 @@ void execute_env(char **env)
 }
 
 /**
- * execute_cd - cd builtin
+ * sh_cdexec - cd builtin
  * @tokens: tokenized commands
  * Return: 0 on success
  */
-int execute_cd(char **tokens)
+int sh_cdexec(char **tokens)
 {
 	char *folder_new = getcwd(NULL, 0);
 	char *folder_prev = getenv("OLDPWD");
@@ -62,7 +62,7 @@ int execute_cd(char **tokens)
 			perror("cd");
 		}
 	}
-	else if (my_strcmp(tokens[1], "-") == 0)
+	else if (sh_strcmp(tokens[1], "-") == 0)
 	{
 		if (folder_prev == NULL)
 			perror("cd: OLDPWD not set\n");
@@ -72,7 +72,7 @@ int execute_cd(char **tokens)
 			{
 				perror("cd");
 			}
-			write(STDERR_FILENO, folder_prev, getStringLength(folder_prev));
+			write(STDERR_FILENO, folder_prev, sh_strlen(folder_prev));
 			write(STDERR_FILENO, "\n", 1);
 		}
 	}
@@ -94,45 +94,45 @@ int execute_cd(char **tokens)
 }
 
 /**
- * shell_setenv - setenv builtin
+ * sh_setenv - setenv builtin
  * @args: tokenized commands
  * Return: 0 or 1
  */
-void shell_setenv(char **args)
+void sh_setenv(char **args)
 {
 	if (args[1] == NULL || args[2] == NULL)
 	{
 		write(STDERR_FILENO, "setenv: invalid arguments\n",
-		getStringLength("setenv: invalid arguments\n"));
+		sh_strlen("setenv: invalid arguments\n"));
 	}
 	else
 	{
 		if (setenv(args[1], args[2], 1) != 0)
 		{
 			write(STDERR_FILENO, "setenv: failed to set variable\n",
-			getStringLength("setenv: failed to set variable\n"));
+			sh_strlen("setenv: failed to set variable\n"));
 		}
 	}
 }
 
 /**
- * shell_unsetenv - cd builtin
+ * sh_unsetenv - cd builtin
  * @args: tokenized commands
  * Return: 0 or 1
  */
-void shell_unsetenv(char **args)
+void sh_unsetenv(char **args)
 {
 	if (args[1] == NULL)
 	{
 		write(STDERR_FILENO, "unsetenv: invalid arguments\n",
-		getStringLength("unsetenv: invalid arguments\n"));
+		sh_strlen("unsetenv: invalid arguments\n"));
 	}
 	else
 	{
 		if (unsetenv(args[1]) != 0)
 		{
 			write(STDERR_FILENO, "unsetenv: failed to unset variable\n",
-			getStringLength("unsetenv: failed to unset variable\n"));
+			sh_strlen("unsetenv: failed to unset variable\n"));
 		}
 	}
 }
