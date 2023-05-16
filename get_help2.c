@@ -1,14 +1,14 @@
 #include "main.h"
 /**
- * concatenateStrings - joins two strings together
+ * sh_constr - joins two strings together
  * @str1: string concetenated
  * @str2: string joined to str1
  * Return: str1 and str2 combined
  */
-char *concatenateStrings(char *str1, char *str2)
+char *sh_constr(char *str1, char *str2)
 {
-	int len1 = getStringLength(str1);
-	int len2 = getStringLength(str2);
+	int len1 = sh_strlen(str1);
+	int len2 = sh_strlen(str2);
 	char *result = malloc(len1 + len2 + 1);
 
 	if (result == NULL)
@@ -16,18 +16,18 @@ char *concatenateStrings(char *str1, char *str2)
 		perror("Failed to allocate memory for concatenated string");
 		exit(1);
 	}
-	result = myStrcpy(result, str1);
-	result = myStrcat(result, str2);
+	result = sh_strcpy(result, str1);
+	result = sh_strcat(result, str2);
 	return (result);
 }
 
 /**
- * myStrcpy - copies contents of one string to another string
+ * sh_strcpy - copies contents of one string to another string
  * @dest: copying destination
  * @src: string copied
  * Return: string copied
  */
-char *myStrcpy(char *dest, const char *src)
+char *sh_strcpy(char *dest, const char *src)
 {
 	char *originalDest = dest;
 
@@ -42,12 +42,12 @@ char *myStrcpy(char *dest, const char *src)
 }
 
 /**
- * myStrcat - concatenates two strings
+ * sh_strcat - concatenates two strings
  * @dest: destiation
  * @src: string constant
  * Return: joined string
  */
-char *myStrcat(char *dest, const char *src)
+char *sh_strcat(char *dest, const char *src)
 {
 	char *originalDest = dest;
 
@@ -66,13 +66,13 @@ char *myStrcat(char *dest, const char *src)
 }
 
 /**
- * myStrncmp - compares two strings, checks if they are equal
+ * sh_strncmp - compares two strings, checks if they are equal
  * @s1: string one compared
  * @s2: string compared with string one
  * @n: compares the first n characters of s1 and s2.
  * Return: 0 on sucess
  */
-int myStrncmp(const char *s1, const char *s2, size_t n)
+int sh_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t i;
 
@@ -92,9 +92,9 @@ int myStrncmp(const char *s1, const char *s2, size_t n)
  * @str: string copied
  * Return: a pointer to the new string.
  */
-char *my_strdup(const char *str)
+char *sh_strdup(const char *str)
 {
-	size_t len = getStringLength(str) + 1;
+	size_t len = sh_strlen(str) + 1;
 	char *new_str = malloc(len);
 
 	if (new_str == NULL)
