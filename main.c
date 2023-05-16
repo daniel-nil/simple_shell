@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	{
 		if (isatty(0))
 		{
-			write(STDOUT_FILENO, "#cisfun$ ", 9);
+			write(STDOUT_FILENO, "$ ", 2);
 		}
 		input = read_input();
 		if (input == NULL)
