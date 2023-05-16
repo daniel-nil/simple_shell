@@ -1,32 +1,32 @@
 #include "main.h"
 
 /**
- * custom_setenv - clone of setenv
+ * sh_cus_setenv - clone of setenv
  * @name: variable name
  * @value: new variable value
  * @overwrite: checks if variable exists or not
  * Return: 0 or -1
  */
-int custom_setenv(const char *name, const char *value, int overwrite)
+int sh_cus_setenv(const char *name, const char *value, int overwrite)
 {
 	int result;
 	char *envstr;
 
-	envstr = (char *)malloc(getStringLength(name) + getStringLength(value) + 2);
+	envstr = (char *)malloc(sh_strlen(name) + sh_strlen(value) + 2);
 	if (!envstr)
 	{
 		return (-1);
 	}
 
-	myStrcpy(envstr, name);
-	myStrcat(envstr, "=");
-	myStrcat(envstr, value);
+	sh_strcpy(envstr, name);
+	sh_strcat(envstr, "=");
+	sh_strcat(envstr, value);
 
-	if (_getenv(name))
+	if (sh_getenv(name))
 	{
 		if (overwrite)
 		{
-			result = custom_putenv(envstr);
+			result = sh_putenv(envstr);
 		}
 		else
 		{
@@ -35,7 +35,7 @@ int custom_setenv(const char *name, const char *value, int overwrite)
 	}
 	else
 	{
-		result = custom_putenv(envstr);
+		result = sh_putenv(envstr);
 	}
 
 	if (result != 0)
@@ -47,11 +47,11 @@ int custom_setenv(const char *name, const char *value, int overwrite)
 }
 
 /**
- * custom_unsetenv - clone of setenv
+ * sh_cus_unsetenv - clone of setenv
  * @name: variable name
  * Return: 0 or -1
  */
-int custom_unsetenv(const char *name)
+int sh_cus_unsetenv(const char *name)
 {
 	int i, j, len;
 	char **envp, **newenvp;
@@ -68,9 +68,9 @@ int custom_unsetenv(const char *name)
 		return (-1);
 	}
 
-	len = getStringLength(name);
+	len = sh_strlen(name);
 
-	newenvp = (char **)malloc(sizeof(char *) * (custom_environSize() + 1));
+	newenvp = (char **)malloc(sizeof(char *) * (sh_envsize() + 1));
 	if (!newenvp)
 	{
 		return (-1);
@@ -78,7 +78,7 @@ int custom_unsetenv(const char *name)
 
 	for (i = 0, j = 0; envp[i]; i++)
 	{
-		if (myStrncmp(envp[i], name, len) != 0 || envp[i][len] != '=')
+		if (sh_strncmp(envp[i], name, len) != 0 || envp[i][len] != '=')
 		{
 			newenvp[j++] = envp[i];
 		}
