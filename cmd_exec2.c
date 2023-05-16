@@ -1,22 +1,22 @@
 #include "main.h"
 
 /**
- * handle_semicolon - handles ";" separator
+ * sh_semicolon - handles ";" separator
  * @input: input string that needs to be tokenized
  */
-void handle_semicolon(char *input)
+void sh_semicolon(char *input)
 {
 	char *commands[MAX_ARGS];
 	char *args[MAX_ARGS];
 	pid_t pid;
 	int j, status;
 
-	delim_tokenize(input, commands, MAX_NUM_TOKENS, ";");
+	sh_del_token(input, commands, MAX_NUM_TOKENS, ";");
 
 
 	for (j = 0; commands[j] != NULL; j++)
 	{
-		delim_tokenize(commands[j], args, MAX_NUM_TOKENS, " \t\n");
+		sh_del_token(commands[j], args, MAX_NUM_TOKENS, " \t\n");
 		if (args[0] != NULL)
 		{
 			pid = fork();
@@ -42,14 +42,14 @@ void handle_semicolon(char *input)
 }
 
 /**
- * delim_tokenize - breaks a string into tokens using strtok() function
+ * sh_del_token - breaks a string into tokens using strtok() function
  * @input: input string that needs to be tokenized.
  * @tokens: array that will hold the resulting tokens
  * @max_tokens: max no of tokens that can be extracted from the input string
  * @delim: delimiter string
  * Return: number of tokens
  */
-int delim_tokenize(char *input, char **tokens, int max_tokens, char *delim)
+int sh_del_token(char *input, char **tokens, int max_tokens, char *delim)
 {
 	int num_tokens = 0;
 	char *token = strtok(input, delim);
