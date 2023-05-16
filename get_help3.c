@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * my_memcpy - copies bytes from memory
+ * sh_memcpy - copies bytes from memory
  * @dest: a pointer to the destination buffer
  * @src: a pointer to the source buffer
  * @n: the number of bytes to copy.
  * Return: void pointer to the destination buffer.
  */
-void *my_memcpy(void *dest, const void *src, size_t n)
+void *sh_memcpy(void *dest, const void *src, size_t n)
 {
 	char *pdest = dest;
 	const char *psrc = src;
@@ -21,12 +21,12 @@ void *my_memcpy(void *dest, const void *src, size_t n)
 }
 
 /**
- * my_realloc - changes size of memory block
+ * sh_realloc - changes size of memory block
  * @ptr: pointer to the previously allocated memory block
  * @size: new size to allocate
  * Return: a void pointer to the newly allocated memory block.
  */
-void *my_realloc(void *ptr, size_t size)
+void *sh_realloc(void *ptr, size_t size)
 {
 	if (size == 0)
 	{
@@ -45,25 +45,25 @@ void *my_realloc(void *ptr, size_t size)
 		{
 			return (NULL);
 		}
-		my_memcpy(new_ptr, ptr, size);
+		sh_memcpy(new_ptr, ptr, size);
 		free(ptr);
 		return (new_ptr);
 	}
 }
 
 /**
- * printenv -  prints environment variable
+ * shell_env -  prints environment variable
  * takes no arguments
  * Return: 0 on success
  */
-int printenv(void)
+int shell_env(void)
 {
 	int i = 0;
 
 	while ((environ[i]))
 	{
-		printString(environ[i]);
-		printString("\n");
+		sh_printer(environ[i]);
+		sh_printer("\n");
 		i++;
 	}
 
