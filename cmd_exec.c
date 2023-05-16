@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * file_input - opens shell scripts in non-intective mode
+ * sh_writer - opens shell scripts in non-intective mode
  * @argc: argc
  * @argv: argv
  * Return: 0 on success
  */
-int file_input(int argc, char **argv)
+int sh_writer(int argc, char **argv)
 {
 	char *input = NULL;
 	char *tokens[MAX_NUM_TOKENS];
