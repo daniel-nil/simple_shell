@@ -1,5 +1,11 @@
 #include "main.h"
+#include <stdlib.h>
 #include <stddef.h>
+#include <unistd.h>  /* for read() and STDIN_FILENO */
+
+
+#define INIT_BUF_SIZE 128  /* initial size of the buffer */
+
 
 /**
  * my_getline - custom version of getline()
