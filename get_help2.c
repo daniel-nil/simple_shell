@@ -9,7 +9,7 @@ char *concatenateStrings(char *str1, char *str2)
 {
 	int len1 = getStringLength(str1);
 	int len2 = getStringLength(str2);
-	char *result = malloc(len1 + len2 + 1); /* add one for null terminator */
+	char *result = malloc(len1 + len2 + 1);
 
 	if (result == NULL)
 	{
@@ -29,7 +29,7 @@ char *concatenateStrings(char *str1, char *str2)
  */
 char *myStrcpy(char *dest, const char *src)
 {
-	char *originalDest = dest; /* save the original pointer to dest */
+	char *originalDest = dest;
 
 	while (*src != '\0')
 	{
@@ -49,7 +49,7 @@ char *myStrcpy(char *dest, const char *src)
  */
 char *myStrcat(char *dest, const char *src)
 {
-	char *originalDest = dest;/* save the original pointer to dest */
+	char *originalDest = dest;
 
 	while (*dest != '\0')
 	{
