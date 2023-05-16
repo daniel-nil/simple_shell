@@ -11,9 +11,9 @@ int main(int argc, char **argv)
 	char *tokens[MAX_NUM_TOKENS];
 	int num_tokens;
 
-	if (argc > 1 && my_strcmp(argv[0], "./hsh") == 0)
+	if (argc > 1 && sh_strcmp(argv[0], "./hsh") == 0)
 	{
-		file_input(argc, argv);
+		sh_writer(argc, argv);
 		exit(0);
 	}
 	while (1)
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 		{
 			write(STDOUT_FILENO, "$ ", 2);
 		}
-		input = read_input();
+		input = sh_reader();
 		if (input == NULL)
 		{
 			if (isatty(0))
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 			exit(0);
 		}
 		if (strchr(input, ';') != NULL)
-			handle_semicolon(input);
+			sh_semicolon(input);
 		else
 		{
 			num_tokens = tokenize(input, tokens, MAX_NUM_TOKENS);
@@ -72,11 +72,11 @@ int tokenize(char *input, char **tokens, int max_tokens)
 }
 
 /**
- * command_checker - checks if the command is a built in or located in PATH
+ * sh_checkercmd - checks if the command is a built in or located in PATH
  * @tokens: a pointer to the commands
  * Return: path of the command
  */
-char *command_checker(char **tokens)
+char *sh_checkercmd(char **tokens)
 {
 	char *path;
 	LL *pathLL;
@@ -85,9 +85,9 @@ char *command_checker(char **tokens)
 
 	for (i = 0; builtins[i]; i++)
 	{
-		if (my_strcmp(tokens[0], builtins[i]) == 0)
+		if (sh_strcmp(tokens[0], builtins[i]) == 0)
 		{
-			execute_builtins(tokens, environ);
+			sh_exec_builtin(tokens, environ);
 			return (NULL);
 		}
 	}
@@ -98,12 +98,12 @@ char *command_checker(char **tokens)
 	}
 	else if (access(tokens[0], X_OK) != 0)
 	{
-		pathLL = path_list();
-		path = find_executable(tokens[0], pathLL);
+		pathLL = the_path();
+		path = sh_finder(tokens[0], pathLL);
 
 		if (path == NULL)
 		{
-			perror(myStrcat(tokens[0], ": command not found\n"));
+			perror(sh_strcat(tokens[0], ": command not found\n"));
 		}
 		else
 		{
@@ -121,7 +121,7 @@ void execute(char **tokens)
 {
 	pid_t pid;
 	int status;
-	char *path = command_checker(tokens);
+	char *path = sh_checkercmd(tokens);
 
 	if (path == NULL)
 	{
