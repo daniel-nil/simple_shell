@@ -12,7 +12,6 @@
 #include <unistd.h>
 
 
-#define INIT_BUF_SIZE 128
 #define MAX_INPUT_SIZE 1024
 #define MAX_TOKEN_SIZE 64
 #define MAX_NUM_TOKENS 64
