@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * custom_putenv - clone of putenv
+ * sh_putenv - clone of putenv
  * @str: name value pair to be added to env
  * Return: 1 or 0
  */
-int custom_putenv(char *str)
+int sh_putenv(char *str)
 {
 	int result = 0;
 	char **new_environ = NULL;
@@ -16,7 +16,7 @@ int custom_putenv(char *str)
 		return (-1);
 	}
 	
-	new_environ = (char **)malloc(sizeof(char *) * (custom_environSize() + 2));
+	new_environ = (char **)malloc(sizeof(char *) * (sh_envsize() + 2));
 	if (!new_environ)
 	{
 		return (-1);
@@ -24,7 +24,7 @@ int custom_putenv(char *str)
 
 	for (i = 0, j = 0; environ[i] != NULL; i++)
 	{
-		if (myStrncmp(environ[i], str, custom_strchr(str, '=') - str) != 0)
+		if (sh_strncmp(environ[i], str, sh_strchr(str, '=') - str) != 0)
 		{
 			new_environ[j++] = environ[i];
 		}
@@ -44,12 +44,12 @@ int custom_putenv(char *str)
 }
 
 /**
- * custom_strchr - custom strchr
+ * sh_strchr - custom strchr
  * @str: search string
  * @c: search char
  * Return: NULL or pointer to first occurence of c
  */
-char *custom_strchr(const char *str, int c)
+char *sh_strchr(const char *str, int c)
 {
 	while (*str)
 	{
@@ -67,10 +67,10 @@ char *custom_strchr(const char *str, int c)
 }
 
 /**
- * custom_environSize - custom environSize
+ * sh_envsize - custom environSize
  * Return: size of current env variable
  */
-int custom_environSize(void)
+int sh_envsize(void)
 {
 	int size = 0;
 	char **envp = environ;
