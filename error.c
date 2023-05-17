@@ -2,25 +2,25 @@
 
 /**
  * sh_exit - exit builtin
- * @tokens: tokenized commands
+ * @tok: tokenized commands
  */
-void sh_exit(char **tokens)
+void sh_exit(char **tok)
 {
 	int size = 0;
-	const char *error_msg;
+	const char *err_msg;
 
-	while (tokens[size] != NULL)
+	while (tok[size] != NULL)
 	{
 		size++;
 	}
 	if (size > 2)
 	{
-		error_msg = "Error: too many arguments\n";
-		write(STDERR_FILENO, error_msg, sh_strlen(error_msg));
+		err_msg = "Error: too many arguments\n";
+		write(STDERR_FILENO, err_msg, sh_strlen(err_msg));
 	}
 	else if (size == 2)
 	{
-		exit(atoi(tokens[1]));
+		exit(atoi(tok[1]));
 	}
 	else
 	{
@@ -47,49 +47,49 @@ void sh_env(char **env)
 
 /**
  * sh_cdexec - cd builtin
- * @tokens: tokenized commands
+ * @tok: tokenized commands
  * Return: 0 on success
  */
-int sh_cdexec(char **tokens)
+int sh_cdexec(char **tok)
 {
-	char *folder_new = getcwd(NULL, 0);
-	char *folder_prev = getenv("OLDPWD");
+	char *f_new = getcwd(NULL, 0);
+	char *f_prev = getenv("OLDPWD");
 
-	if (tokens[1] == NULL)
+	if (tok[1] == NULL)
 	{
 		if (chdir(getenv("HOME")) != 0)
 		{
 			perror("cd");
 		}
 	}
-	else if (sh_strcmp(tokens[1], "-") == 0)
+	else if (sh_strcmp(tok[1], "-") == 0)
 	{
-		if (folder_prev == NULL)
+		if (f_prev == NULL)
 			perror("cd: OLDPWD not set\n");
 		else
 		{
-			if (chdir(folder_prev) != 0)
+			if (chdir(f_prev) != 0)
 			{
 				perror("cd");
 			}
-			write(STDERR_FILENO, folder_prev, sh_strlen(folder_prev));
+			write(STDERR_FILENO, f_prev, sh_strlen(f_prev));
 			write(STDERR_FILENO, "\n", 1);
 		}
 	}
 	else
 	{
-		if (chdir(tokens[1]) != 0)
+		if (chdir(tok[1]) != 0)
 		{
 			perror("cd");
 		}
 	}
-	if (folder_new == NULL)
+	if (f_new == NULL)
 	{
 		perror("getcwd failed");
 	}
 	setenv("OLDPWD", getenv("PWD"), 1);
-	setenv("PWD", folder_new, 1);
-	free(folder_new);
+	setenv("PWD", f_new, 1);
+	free(f_new);
 	return (1);
 }
 
