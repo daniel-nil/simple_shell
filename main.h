@@ -43,9 +43,9 @@ int sh_cus_unsetenv(const char *varname);
 /* error.c*/
 void sh_setenv(char **args);
 void sh_unsetenv(char **args);
-void sh_exit(char **tokens);
+void sh_exit(char **tok);
 void sh_env(char **env);
-int sh_cdexec(char **tokens);
+int sh_cdexec(char **tok);
 
 /* exec_line.c*/
 int sh_checkempty(ssize_t len, char *buf);
