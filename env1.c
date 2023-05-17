@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * sh_putenv - clone of putenv
- * @str: name value pair to be added to env
+ * sh_putenv - duplicate putenv
+ * @str: string
  * Return: 1 or 0
  */
 int sh_putenv(char *str)
@@ -44,10 +44,10 @@ int sh_putenv(char *str)
 }
 
 /**
- * sh_strchr - custom strchr
- * @str: search string
- * @z: search char
- * Return: NULL or pointer to first occurence of z
+ * sh_strchr - duplicate strchr
+ * @str: string
+ * @z: char
+ * Return: 0 or first occurence z
  */
 char *sh_strchr(const char *str, int z)
 {
@@ -67,8 +67,8 @@ char *sh_strchr(const char *str, int z)
 }
 
 /**
- * sh_envsize - custom environSize
- * Return: size of current env variable
+ * sh_envsize - duplicate environSize
+ * Return: size of e variable
  */
 int sh_envsize(void)
 {
