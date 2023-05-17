@@ -76,7 +76,7 @@ char *sh_reader(void);
 int sh_strlen(const char *str);
 void sh_printer(char *str);
 void sh_stderror(char *str);
-int sh_strcmp(const char *str1, const char *str2);
+int sh_strcmp(const char *s1, const char *s2);
 
 /*get_help2*/
 char *sh_constr(char *str1, char *str2);
