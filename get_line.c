@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 
-#define INIT_BUF_SIZE 128
+#define BUFFERSIZE 128
 
 
 /**
@@ -29,7 +29,7 @@ ssize_t sh_getline(char **lineptr, size_t *n, int fd)
 	}
 	if (buf == NULL)
 	{
-		buf_size = INIT_BUF_SIZE;
+		buf_size = BUFFERSIZE;
 		buf = sh_buffer(buf_size);
 		if (buf == NULL)
 		return (-1);
