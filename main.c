@@ -1,19 +1,19 @@
 #include "main.h"
 /**
  * main - Entry point og the program
- * @argc: argc
- * @argv: argv
+ * @ac: argc
+ * @av: argv
  * Return: 0 on success
  */
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
 	char *input = NULL;
-	char *tokens[MAXITOKEN];
-	int num_tokens;
+	char *tok[MAXITOKEN];
+	int num_tok;
 
-	if (argc > 1 && sh_strcmp(argv[0], "./hsh") == 0)
+	if (ac > 1 && sh_strcmp(av[0], "./hsh") == 0)
 	{
-		sh_writer(argc, argv);
+		sh_writer(ac, av);
 		exit(0);
 	}
 	while (1)
@@ -36,9 +36,9 @@ int main(int argc, char **argv)
 			sh_semicolon(input);
 		else
 		{
-			num_tokens = tokenize(input, tokens, MAXITOKEN);
-			if (num_tokens > 0 && strcmp(tokens[0], "alias") != 0)
-				execute(tokens);
+			num_tok = tokenize(input, tok, MAXITOKEN);
+			if (num_tok > 0 && strcmp(tok[0], "alias") != 0)
+				execute(tok);
 		}
 		free(input);
 	}
@@ -48,66 +48,66 @@ int main(int argc, char **argv)
 /**
  * tokenize - breaks a string into tokens using strtok() function
  * @input: input string that needs to be tokenized.
- * @tokens: array that will hold the resulting tokens
- * @max_tokens: max no of tokens that can be extracted from the input string
+ * @tok: array that will hold the resulting tokens
+ * @maxitok: max no of tokens that can be extracted from the input string
  * Return: number of tokens
  */
-int tokenize(char *input, char **tokens, int max_tokens)
+int tokenize(char *input, char **tok, int maxitok)
 {
-	int num_tokens = 0;
-	char *token = strtok(input, " \n");
+	int num_tok = 0;
+	char *x = strtok(input, " \n");
 
-	while (token != NULL && num_tokens < max_tokens)
+	while (x != NULL && num_tok < maxitok)
 	{
-		if (token[0] == '#')
+		if (x[0] == '#')
 		{
 			break;
 		}
-		tokens[num_tokens] = token;
-		num_tokens++;
-		token = strtok(NULL, " \n");
+		tok[num_tok] = x;
+		num_tok++;
+		x = strtok(NULL, " \n");
 	}
-	tokens[num_tokens] = NULL;
-	return (num_tokens);
+	tok[num_tok] = NULL;
+	return (num_tok);
 }
 
 /**
  * sh_checkercmd - checks if the command is a built in or located in PATH
- * @tokens: a pointer to the commands
+ * @tok: a pointer to the commands
  * Return: path of the command
  */
-char *sh_checkercmd(char **tokens)
+char *sh_checkercmd(char **tok)
 {
-	char *path;
-	L_LIST *pathLL;
+	char *p;
+	L_LIST *pat;
 	char *builtins[6] = {"exit", "env", "cd", "unsetenv", "setenv", NULL};
-	int i;
+	int x;
 
-	for (i = 0; builtins[i]; i++)
+	for (x = 0; builtins[x]; x++)
 	{
-		if (sh_strcmp(tokens[0], builtins[i]) == 0)
+		if (sh_strcmp(tok[0], builtins[x]) == 0)
 		{
-			sh_exec_builtin(tokens, environ);
+			sh_exec_builtin(tok, environ);
 			return (NULL);
 		}
 	}
-	if (access(tokens[0], X_OK) == 0)
+	if (access(tok[0], X_OK) == 0)
 	{
-		path = tokens[0];
-		return (path);
+		p = tok[0];
+		return (p);
 	}
-	else if (access(tokens[0], X_OK) != 0)
+	else if (access(tok[0], X_OK) != 0)
 	{
-		pathLL = the_path();
-		path = sh_finder(tokens[0], pathLL);
+		pat = the_path();
+		p = sh_finder(tok[0], pat);
 
-		if (path == NULL)
+		if (p == NULL)
 		{
-			perror(sh_strcat(tokens[0], ": command not found\n"));
+			perror(sh_strcat(tok[0], ": command not found\n"));
 		}
 		else
 		{
-			return (path);
+			return (p);
 		}
 	}
 	return (NULL);
@@ -115,19 +115,19 @@ char *sh_checkercmd(char **tokens)
 
 /**
  * execute - creates a child process using fork() and executes command
- * @tokens: commands executed
+ * @tok: commands executed
  */
-void execute(char **tokens)
+void execute(char **tok)
 {
 	pid_t pid;
 	int status;
-	char *path = sh_checkercmd(tokens);
+	char *p = sh_checkercmd(tok);
 
-	if (path == NULL)
+	if (p == NULL)
 	{
 		return;
 	}
-	else if (strcmp(path, "error") == 0)
+	else if (strcmp(p, "error") == 0)
 	{
 		write(STDERR_FILENO, "Invalid command\n", strlen("Invalid command\n"));
 		return;
@@ -136,7 +136,7 @@ void execute(char **tokens)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(path, tokens, environ) == -1)
+		if (execve(p, tok, environ) == -1)
 		{
 			perror("execve failure");
 			exit(1);
