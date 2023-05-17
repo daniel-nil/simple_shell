@@ -26,10 +26,10 @@ typedef struct linkedList
 
 /* cd_shell.c*/
 L_LIST *the_path();
-void the_node(L_LIST **head_ref, char *str);
+void the_node(L_LIST **ref, char *str);
 void sh_freelist(L_LIST *head);
-char *sh_getenv(const char *name);
-char *sh_finder(char *command, L_LIST *path_list);
+char *sh_getenv(const char *varname);
+char *sh_finder(char *cmd, L_LIST *p_list);
 
 /* env1.c*/
 int sh_putenv(char *str);
