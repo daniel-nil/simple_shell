@@ -2,91 +2,91 @@
 
 /**
  * sh_cus_setenv - clone of setenv
- * @name: variable name
- * @value: new variable value
- * @overwrite: checks if variable exists or not
+ * @varname: variable name
+ * @val: new variable value
+ * @e: checks if variable exists or not
  * Return: 0 or -1
  */
-int sh_cus_setenv(const char *name, const char *value, int overwrite)
+int sh_cus_setenv(const char *varname, const char *val, int e)
 {
-	int result;
-	char *envstr;
+	int x;
+	char *estr;
 
-	envstr = (char *)malloc(sh_strlen(name) + sh_strlen(value) + 2);
-	if (!envstr)
+	estr = (char *)malloc(sh_strlen(varname) + sh_strlen(val) + 2);
+	if (!estr)
 	{
 		return (-1);
 	}
 
-	sh_strcpy(envstr, name);
-	sh_strcat(envstr, "=");
-	sh_strcat(envstr, value);
+	sh_strcpy(estr, varname);
+	sh_strcat(estr, "=");
+	sh_strcat(estr, val);
 
-	if (sh_getenv(name))
+	if (sh_getenv(varname))
 	{
-		if (overwrite)
+		if (e)
 		{
-			result = sh_putenv(envstr);
+			x = sh_putenv(estr);
 		}
 		else
 		{
-			result = 0;
+			x = 0;
 		}
 	}
 	else
 	{
-		result = sh_putenv(envstr);
+		x = sh_putenv(estr);
 	}
 
-	if (result != 0)
+	if (e != 0)
 	{
-		free(envstr);
+		free(estr);
 	}
 
-	return (result);
+	return (x);
 }
 
 /**
  * sh_cus_unsetenv - clone of setenv
- * @name: variable name
+ * @varname: variable name
  * Return: 0 or -1
  */
-int sh_cus_unsetenv(const char *name)
+int sh_cus_unsetenv(const char *varname)
 {
 	int i, j, len;
-	char **envp, **newenvp;
+	char **env, **new_env;
 
-	if (!name || !*name)
+	if (!varname || !*varname)
 	{
 		return (-1);
 	}
 
-	envp = environ;
+	env = environ;
 
-	if (!envp || !*envp)
+	if (!env || !*env)
 	{
 		return (-1);
 	}
 
-	len = sh_strlen(name);
+	len = sh_strlen(varname);
 
-	newenvp = (char **)malloc(sizeof(char *) * (sh_envsize() + 1));
-	if (!newenvp)
+	new_env = (char **)malloc(sizeof(char *) * (sh_envsize() + 1));
+	if (!new_env)
 	{
 		return (-1);
 	}
 
-	for (i = 0, j = 0; envp[i]; i++)
+	for (i = 0, j = 0; env[i]; i++)
 	{
-		if (sh_strncmp(envp[i], name, len) != 0 || envp[i][len] != '=')
+		if (sh_strncmp(env[i], varname, len) != 0 || env[i][len] != '=')
 		{
-			newenvp[j++] = envp[i];
+			new_env[j++] = env[i];
 		}
 	}
 
-	newenvp[j] = NULL;
+	new_env[j] = NULL;
 
-	environ = newenvp;
+	environ = new_env;
 
 	return (0);
 }
