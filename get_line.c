@@ -1,19 +1,16 @@
 #include "main.h"
-#include <stdlib.h>
 #include <stddef.h>
-#include <unistd.h>
 
 
 #define BUFFERSIZE 128
 
 
 /**
- * sh_getline - custom version of getline()
- * @lptr: buffer for storing strings
- * @x: size of buffer
- * @fd: source to read from
- *
- * Return: -1 or number of char's read
+ * sh_getline - duplicate getline
+ * @lptr: pointer strings
+ * @x: size buffer
+ * @fd: source
+ * Return: -1 or something else
  */
 ssize_t sh_getline(char **lptr, size_t *x, int fd)
 {
