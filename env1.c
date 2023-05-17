@@ -7,59 +7,59 @@
  */
 int sh_putenv(char *str)
 {
-	int result = 0;
-	char **new_environ = NULL;
-	int i, j;
+	int x = 0;
+	char **new_env = NULL;
+	int a, b;
 
 	if (!str || !*str || strchr(str, '=') == NULL)
 	{
 		return (-1);
 	}
 	
-	new_environ = (char **)malloc(sizeof(char *) * (sh_envsize() + 2));
-	if (!new_environ)
+	new_env = (char **)malloc(sizeof(char *) * (sh_envsize() + 2));
+	if (!new_env)
 	{
 		return (-1);
 	}
 
-	for (i = 0, j = 0; environ[i] != NULL; i++)
+	for (a = 0, b = 0; environ[a] != NULL; a++)
 	{
-		if (sh_strncmp(environ[i], str, sh_strchr(str, '=') - str) != 0)
+		if (sh_strncmp(environ[a], str, sh_strchr(str, '=') - str) != 0)
 		{
-			new_environ[j++] = environ[i];
+			new_env[b++] = environ[a];
 		}
 		else
 		{
-			result = 1;
+			x = 1;
 		}
 	}
 
-	new_environ[j++] = str;
+	new_env[b++] = str;
 
-	new_environ[j] = NULL;
+	new_env[b] = NULL;
 
-	environ = new_environ;
+	environ = new_env;
 
-	return (result);
+	return (x);
 }
 
 /**
  * sh_strchr - custom strchr
  * @str: search string
- * @c: search char
- * Return: NULL or pointer to first occurence of c
+ * @z: search char
+ * Return: NULL or pointer to first occurence of z
  */
-char *sh_strchr(const char *str, int c)
+char *sh_strchr(const char *str, int z)
 {
 	while (*str)
 	{
-		if (*str == c)
+		if (*str == z)
 		{
 		return ((char *)str);
 		}
 		str++;
 	}
-	if (*str == c)
+	if (*str == z)
 	{
 		return ((char *)str);
 	}
@@ -72,13 +72,13 @@ char *sh_strchr(const char *str, int c)
  */
 int sh_envsize(void)
 {
-	int size = 0;
-	char **envp = environ;
+	int x = 0;
+	char **e = environ;
 
-	while (*envp != NULL)
+	while (*e != NULL)
 	{
-		size++;
-		envp++;
+		x++;
+		e++;
 	}
-	return (size);
+	return (x);
 }
