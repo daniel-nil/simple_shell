@@ -4,50 +4,50 @@
  * sh_memcpy - copies bytes from memory
  * @dest: a pointer to the destination buffer
  * @src: a pointer to the source buffer
- * @n: the number of bytes to copy.
+ * @x: the number of bytes to copy.
  * Return: void pointer to the destination buffer.
  */
-void *sh_memcpy(void *dest, const void *src, size_t n)
+void *sh_memcpy(void *dest, const void *src, size_t x)
 {
-	char *pdest = dest;
-	const char *psrc = src;
-	size_t i;
+	char *a = dest;
+	const char *b = src;
+	size_t y;
 
-	for (i = 0; i < n; i++)
+	for (y = 0; y < x; y++)
 	{
-		pdest[i] = psrc[i];
+		a[y] = b[y];
 	}
 	return (dest);
 }
 
 /**
  * sh_realloc - changes size of memory block
- * @ptr: pointer to the previously allocated memory block
+ * @p: pointer to the previously allocated memory block
  * @size: new size to allocate
  * Return: a void pointer to the newly allocated memory block.
  */
-void *sh_realloc(void *ptr, size_t size)
+void *sh_realloc(void *p, size_t size)
 {
 	if (size == 0)
 	{
-		free(ptr);
+		free(p);
 		return (NULL);
 	}
-	else if (ptr == NULL)
+	else if (p == NULL)
 	{
 		return (malloc(size));
 	}
 	else
 	{
-		void *new_ptr = malloc(size);
+		void *new_p = malloc(size);
 
-		if (new_ptr == NULL)
+		if (new_p == NULL)
 		{
 			return (NULL);
 		}
-		sh_memcpy(new_ptr, ptr, size);
-		free(ptr);
-		return (new_ptr);
+		sh_memcpy(new_p, p, size);
+		free(p);
+		return (new_p);
 	}
 }
 
@@ -58,13 +58,13 @@ void *sh_realloc(void *ptr, size_t size)
  */
 int shell_env(void)
 {
-	int i = 0;
+	int m = 0;
 
-	while ((environ[i]))
+	while ((environ[m]))
 	{
-		sh_printer(environ[i]);
+		sh_printer(environ[m]);
 		sh_printer("\n");
-		i++;
+		m++;
 	}
 
 	return (0);
