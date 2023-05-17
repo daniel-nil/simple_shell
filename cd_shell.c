@@ -3,9 +3,9 @@
  * sh_freelist - frees linked list
  * @head: a pointer to the head node of the list
  */
-void sh_freelist(LL *head)
+void sh_freelist(L_LIST *head)
 {
-	LL *temp;
+	L_LIST *temp;
 
 	while (head != NULL)
 	{
@@ -20,9 +20,9 @@ void sh_freelist(LL *head)
  * @head_ref: a double pointer to the head node
  * @str: string stored on the new node
  */
-void the_node(LL **head_ref, char *str)
+void the_node(L_LIST **head_ref, char *str)
 {
-	LL *new_node = (LL *)malloc(sizeof(LL));
+	L_LIST *new_node = (L_LIST *)malloc(sizeof(L_LIST));
 
 	new_node->str = str;
 	new_node->next = *head_ref;
@@ -32,12 +32,12 @@ void the_node(LL **head_ref, char *str)
  * the_path - finds the path in env variable
  * Return: head node to the linked list
  */
-LL *the_path(void)
+L_LIST *the_path(void)
 {
-	LL *head = NULL;
+	L_LIST *head = NULL;
 	char *path = getenv("PATH");
 	char *path_copy = sh_strdup(path);
-	LL *node;
+	L_LIST *node;
 	char *token;
 
 	if (!path_copy)
@@ -49,7 +49,7 @@ LL *the_path(void)
 
 	while (token != NULL)
 	{
-		node = malloc(sizeof(LL));
+		node = malloc(sizeof(L_LIST));
 		if (!node)
 		{
 			perror("malloc failure");
@@ -74,7 +74,7 @@ LL *the_path(void)
  * @path_list: list of directories to check command
  * Return: executable path for the command
  */
-char *sh_finder(char *command, LL *path_list)
+char *sh_finder(char *command, L_LIST *path_list)
 {
 	char *executable_path = NULL;
 	char *path = NULL;
