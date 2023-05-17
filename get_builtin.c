@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * sh_exec_builtin - handles builtin functions
- * @tok: tokenized commands
- * @env: contains values of environ
+ * sh_exec_builtin - builtin function executor
+ * @tok: tokenizer
+ * @env: environ
  */
 void sh_exec_builtin(char **tok, char **env)
 {
