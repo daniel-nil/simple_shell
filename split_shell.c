@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * sh_delim - searches for delimiters in our string
- * @c: chars in source string
- * @del: delimiter charachter
+ * sh_delim - searches delimeter
+ * @c: char
+ * @del: delimiter
  * Return: 0 or -1
  */
 unsigned int sh_delim(char c, char *del)
@@ -18,9 +18,9 @@ unsigned int sh_delim(char c, char *del)
 }
 
 /**
- * sh_strtok - clone of strtok()
- * @ssrc: source string
- * @del: delimiter
+ * sh_strtok - duplicate strtok
+ * @ssrc: source
+ * @del: delimeter
  * Return: 0 or -1
  */
 char *sh_strtok(char *ssrc, char *del)
