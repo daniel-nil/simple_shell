@@ -18,6 +18,11 @@
 
 extern char **environ;
 
+/**
+ * struct linkedList - linked list structure
+ * @str: path
+ * @next: pointer
+ */
 typedef struct linkedList
 {
 	char *str;

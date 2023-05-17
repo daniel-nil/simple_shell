@@ -15,7 +15,7 @@ int sh_putenv(char *str)
 	{
 		return (-1);
 	}
-	
+
 	new_env = (char **)malloc(sizeof(char *) * (sh_envsize() + 2));
 	if (!new_env)
 	{

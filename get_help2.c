@@ -69,7 +69,7 @@ char *sh_strcat(char *dest, const char *src)
  * sh_strncmp - duplicate strncmp
  * @s1: string to be compared
  * @s2: string to be compared with
- * @n: comparer
+ * @x: comparer
  * Return: 0
  */
 int sh_strncmp(const char *s1, const char *s2, size_t x)
@@ -89,7 +89,7 @@ int sh_strncmp(const char *s1, const char *s2, size_t x)
 }
 
 /**
- * my_strdup - duplicate strdup
+ * sh_strdup - duplicate strdup
  * @str: string
  * Return: pointer
  */

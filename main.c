@@ -147,7 +147,6 @@ void execute(char **tok)
 		if (waitpid(pid, &status, 0) == -1)
 		{
 			perror("waitpid failed");
-			
 			exit(1);
 		}
 
