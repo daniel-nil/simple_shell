@@ -69,7 +69,7 @@ int sh_writer(int ac, char **av);
 
 /* cmd_exec2.c*/
 void sh_semicolon(char *input);
-int sh_del_token(char *input, char **tokens, int max_tokens, char *delim);
+int sh_del_token(char *input, char **tok, int maxitok, char *del);
 
 /* get_help.c*/
 char *sh_reader(void);
