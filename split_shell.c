@@ -3,66 +3,66 @@
 /**
  * sh_delim - searches for delimiters in our string
  * @c: chars in source string
- * @delim: delimiter charachter
+ * @del: delimiter charachter
  * Return: 0 or -1
  */
-unsigned int sh_delim(char c, char *delim)
+unsigned int sh_delim(char c, char *del)
 {
-	while (*delim != '\0')
+	while (*del != '\0')
 	{
-		if (c == *delim)
+		if (c == *del)
 			return (1);
-		delim++;
+		del++;
 	}
 	return (0);
 }
 
 /**
  * sh_strtok - clone of strtok()
- * @srcString: source string
- * @delim: delimiter
+ * @ssrc: source string
+ * @del: delimiter
  * Return: 0 or -1
  */
-char *sh_strtok(char *srcString, char *delim)
+char *sh_strtok(char *ssrc, char *del)
 {
-	static char *backup_string;
-	char *ret;
+	static char *x;
+	char *i;
 
-	if (!srcString)
+	if (!ssrc)
 	{
-		srcString = backup_string;
+		ssrc = x;
 	}
-	if (!srcString)
+	if (!ssrc)
 	{
 		return (NULL);
 	}
 	while (1)
 	{
-		if (sh_delim(*srcString, delim))
+		if (sh_delim(*ssrc, del))
 		{
-			srcString++;
+			ssrc++;
 			continue;
 		}
-		if (*srcString == '\0')
+		if (*ssrc == '\0')
 		{
 			return (NULL);
 		}
 		break;
 	}
-	ret = srcString;
+	i = ssrc;
 	while (1)
 	{
-		if (*srcString == '\0')
+		if (*ssrc == '\0')
 		{
-			backup_string = srcString;
-			return (ret);
+			x = ssrc;
+			return (i);
 		}
-		if (sh_delim(*srcString, delim))
+		if (sh_delim(*ssrc, del))
 		{
-			*srcString = '\0';
-			backup_string = srcString + 1;
-			return (ret);
+			*ssrc = '\0';
+			x = ssrc + 1;
+			return (i);
 		}
-		srcString++;
+		ssrc++;
 	}
 }
