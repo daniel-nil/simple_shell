@@ -58,7 +58,7 @@ char *sh_exbuffer(char *b, size_t b_size);
 void sh_exec_builtin(char **tok, char **env);
 
 /* get_line.c*/
-ssize_t sh_getline(char **lineptr, size_t *n, int fd);
+ssize_t sh_getline(char **lptr, size_t *x, int fd);
 
 /* split_shell.c*/
 unsigned int sh_delim(char c, char *delim);
@@ -86,8 +86,8 @@ int sh_strncmp(const char *s1, const char *s2, size_t x);
 char *sh_strdup(const char *str);
 
 /*get_help3*/
-void *sh_memcpy(void *dest, const void *src, size_t n);
-void *sh_realloc(void *ptr, size_t size);
+void *sh_memcpy(void *dest, const void *src, size_t x);
+void *sh_realloc(void *p, size_t size);
 int shell_env(void);
 
 /*main.c*/
