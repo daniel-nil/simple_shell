@@ -17,16 +17,16 @@ void sh_freelist(L_LIST *head)
 }
 /**
  * the_node - adds a new node to the list
- * @head_ref: a double pointer to the head node
+ * @ref: a double pointer to the head node
  * @str: string stored on the new node
  */
-void the_node(L_LIST **head_ref, char *str)
+void the_node(L_LIST **ref, char *str)
 {
-	L_LIST *new_node = (L_LIST *)malloc(sizeof(L_LIST));
+	L_LIST *nnode = (L_LIST *)malloc(sizeof(L_LIST));
 
-	new_node->str = str;
-	new_node->next = *head_ref;
-	*head_ref = new_node;
+	nnode->str = str;
+	nnode->next = *ref;
+	*ref = nnode;
 }
 /**
  * the_path - finds the path in env variable
@@ -35,17 +35,17 @@ void the_node(L_LIST **head_ref, char *str)
 L_LIST *the_path(void)
 {
 	L_LIST *head = NULL;
-	char *path = getenv("PATH");
-	char *path_copy = sh_strdup(path);
+	char *p = getenv("PATH");
+	char *x = sh_strdup(p);
 	L_LIST *node;
 	char *token;
 
-	if (!path_copy)
+	if (!x)
 	{
 		perror("malloc failure");
 		return (NULL);
 	}
-	token = strtok(path_copy, ":");
+	token = strtok(x, ":");
 
 	while (token != NULL)
 	{
@@ -54,7 +54,7 @@ L_LIST *the_path(void)
 		{
 			perror("malloc failure");
 			sh_freelist(head);
-			free(path_copy);
+			free(x);
 			return (NULL);
 		}
 
@@ -64,69 +64,69 @@ L_LIST *the_path(void)
 
 		token = strtok(NULL, ":");
 	}
-	free(path_copy);
+	free(x);
 
 	return (head);
 }
 /**
  * sh_finder - checks if the file exists and is executable
- * @command: command being executed
- * @path_list: list of directories to check command
+ * @cmd: command being executed
+ * @p_list: list of directories to check command
  * Return: executable path for the command
  */
-char *sh_finder(char *command, L_LIST *path_list)
+char *sh_finder(char *cmd, L_LIST *p_list)
 {
-	char *executable_path = NULL;
-	char *path = NULL;
-	int command_len = sh_strlen(command);
-	int path_len;
+	char *execpath = NULL;
+	char *p = NULL;
+	int cmd_len = sh_strlen(cmd);
+	int p_len;
 	int new_len;
-	char *new_path;
+	char *new_p;
 
-	while (path_list != NULL)
+	while (p_list != NULL)
 	{
-		path = path_list->str;
-		path_len = sh_strlen(path);
-		new_len = path_len + command_len + 2;
-		new_path = malloc(new_len * sizeof(char));
-		if (new_path == NULL)
+		p = p_list->str;
+		p_len = sh_strlen(p);
+		new_len = p_len + cmd_len + 2;
+		new_p = malloc(new_len * sizeof(char));
+		if (new_p == NULL)
 		{
 			perror("malloc error");
 			exit(1);
 		}
-		sh_strcpy(new_path, path);
-		sh_strcat(new_path, "/");
-		sh_strcat(new_path, command);
-		if (access(new_path, X_OK) == 0)
+		sh_strcpy(new_p, p);
+		sh_strcat(new_p, "/");
+		sh_strcat(new_p, cmd);
+		if (access(new_p, X_OK) == 0)
 		{
-			executable_path = new_path;
+			execpath = new_p;
 		break;
 		}
-		free(new_path);
-		path_list = path_list->next;
+		free(new_p);
+		p_list = p_list->next;
 	}
-	return (executable_path);
+	return (execpath);
 }
 /**
  * sh_getenv - gets the value stored in specified variable name
- * @name: Variable name
+ * @varname: Variable name
  * Return: values stored in the variable
  */
-char *sh_getenv(const char *name)
+char *sh_getenv(const char *varname)
 {
-	int i, len;
-	char *env_val;
+	int x, len;
+	char *envval;
 
-	len = sh_strlen(name);
+	len = sh_strlen(varname);
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (x = 0; environ[x] != NULL; x++)
 	{
-		if (sh_strncmp(name, environ[i], len) == 0 && environ[i][len] == '=')
+		if (sh_strncmp(varname, environ[x], len) == 0 && environ[x][len] == '=')
 
 		{
-			env_val = &environ[i][len + 1];
+			envval = &environ[x][len + 1];
 
-			return (env_val);
+			return (envval);
 		}
 	}
 
