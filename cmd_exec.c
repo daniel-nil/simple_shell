@@ -9,7 +9,7 @@
 int sh_writer(int argc, char **argv)
 {
 	char *input = NULL;
-	char *tokens[MAX_NUM_TOKENS];
+	char *tokens[MAXITOKEN];
 	int num_tokens;
 	size_t input_size = 0;
 	FILE *file;
@@ -33,7 +33,7 @@ int sh_writer(int argc, char **argv)
 
 	while (getline(&input, &input_size, file) != -1)
 	{
-		num_tokens = tokenize(input, tokens, MAX_NUM_TOKENS);
+		num_tokens = tokenize(input, tokens, MAXITOKEN);
 		if (num_tokens > 0)
 		{
 			execute(tokens);
