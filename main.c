@@ -8,7 +8,7 @@
 int main(int argc, char **argv)
 {
 	char *input = NULL;
-	char *tokens[MAX_NUM_TOKENS];
+	char *tokens[MAXITOKEN];
 	int num_tokens;
 
 	if (argc > 1 && sh_strcmp(argv[0], "./hsh") == 0)
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 			sh_semicolon(input);
 		else
 		{
-			num_tokens = tokenize(input, tokens, MAX_NUM_TOKENS);
+			num_tokens = tokenize(input, tokens, MAXITOKEN);
 			if (num_tokens > 0 && strcmp(tokens[0], "alias") != 0)
 				execute(tokens);
 		}
@@ -79,7 +79,7 @@ int tokenize(char *input, char **tokens, int max_tokens)
 char *sh_checkercmd(char **tokens)
 {
 	char *path;
-	LL *pathLL;
+	L_LIST *pathLL;
 	char *builtins[6] = {"exit", "env", "cd", "unsetenv", "setenv", NULL};
 	int i;
 
