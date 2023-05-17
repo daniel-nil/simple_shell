@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * sh_writer - opens shell scripts in non-intective mode
- * @ac: argc
- * @av: argv
- * Return: 0 on success
+ * sh_writer - opens script in non-intective mode
+ * @ac: argument command
+ * @av: argument vector
+ * Return: null
  */
 int sh_writer(int ac, char **av)
 {
