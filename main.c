@@ -1,9 +1,9 @@
 #include "main.h"
 /**
- * main - Entry point og the program
- * @ac: argc
- * @av: argv
- * Return: 0 on success
+ * main - entry point
+ * @ac: arguement command
+ * @av: arguement vector
+ * Return: 0
  */
 int main(int ac, char **av)
 {
@@ -46,11 +46,11 @@ int main(int ac, char **av)
 }
 
 /**
- * tokenize - breaks a string into tokens using strtok() function
- * @input: input string that needs to be tokenized.
- * @tok: array that will hold the resulting tokens
- * @maxitok: max no of tokens that can be extracted from the input string
- * Return: number of tokens
+ * tokenize - slits string into tokens
+ * @input: input string
+ * @tok: resulting tokens
+ * @maxitok: max no of tokens
+ * Return: no of tokens
  */
 int tokenize(char *input, char **tok, int maxitok)
 {
@@ -72,9 +72,9 @@ int tokenize(char *input, char **tok, int maxitok)
 }
 
 /**
- * sh_checkercmd - checks if the command is a built in or located in PATH
- * @tok: a pointer to the commands
- * Return: path of the command
+ * sh_checkercmd - checks commands
+ * @tok: pointer
+ * Return: path
  */
 char *sh_checkercmd(char **tok)
 {
@@ -114,8 +114,8 @@ char *sh_checkercmd(char **tok)
 }
 
 /**
- * execute - creates a child process using fork() and executes command
- * @tok: commands executed
+ * execute - builds a child process
+ * @tok: executed cmd
  */
 void execute(char **tok)
 {
