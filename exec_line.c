@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * sh_buffer - allocates memory
- * @b_size: memory size
- * Return: allocated memory address
+ * sh_buffer - memory allocator
+ * @b_size: memory parameter
+ * Return: address
  */
 
 char *sh_buffer(size_t b_size)
@@ -19,10 +19,10 @@ char *sh_buffer(size_t b_size)
 }
 
 /**
- * sh_exbuffer - increases size of allocated memory
- * @b_size: memory size
- * @b: pointer to allocated memory
- * Return: newly allocated memory address
+ * sh_exbuffer - size of memory expander
+ * @b_size: memory parameter
+ * @b: pointer
+ * Return: address
  */
 char *sh_exbuffer(char *b, size_t b_size)
 {
@@ -39,10 +39,10 @@ char *sh_exbuffer(char *b, size_t b_size)
 }
 
 /**
- * sh_checkempty - checks if empty line is passed
+ * sh_checkempty - line pass checker
  * @len: length of string
- * @b: pointer to allocated memory
- * Return: newly allocated memory address
+ * @b: pointer
+ * Return: address
  */
 int sh_checkempty(ssize_t len, char *b)
 {
@@ -50,9 +50,9 @@ int sh_checkempty(ssize_t len, char *b)
 }
 
 /**
- * sh_handleempty - handles empty line passed
- * @lptr: double pointer
- * @b: pointer to allocated memory
+ * sh_handleempty - checks line passed
+ * @lptr: doublepointer
+ * @b: pointer
  * Return: -1
  */
 int sh_handleempty(char *b, char **lptr)
@@ -63,9 +63,9 @@ int sh_handleempty(char *b, char **lptr)
 }
 
 /**
- * sh_terminator - terminates the buffer
+ * sh_terminator - terminate buffer
  * @len: length of string
- * @b: pointer to allocated memory
+ * @b: pointer
  */
 void sh_terminator(ssize_t len, char *b)
 {
