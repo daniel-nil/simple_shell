@@ -61,8 +61,8 @@ void sh_exec_builtin(char **tok, char **env);
 ssize_t sh_getline(char **lptr, size_t *x, int fd);
 
 /* split_shell.c*/
-unsigned int sh_delim(char c, char *delim);
-char *sh_strtok(char *srcString, char *delim);
+unsigned int sh_delim(char c, char *del);
+char *sh_strtok(char *ssrc, char *del);
 
 /* cmd_exec.c*/
 int sh_writer(int ac, char **av);
@@ -91,9 +91,9 @@ void *sh_realloc(void *p, size_t size);
 int shell_env(void);
 
 /*main.c*/
-char *sh_checkercmd(char **tokens);
-void execute(char **tokens);
-int tokenize(char *input, char **tokens, int max_tokens);
+char *sh_checkercmd(char **tok);
+void execute(char **tok);
+int tokenize(char *input, char **tok, int maxitok);
 
 
 
