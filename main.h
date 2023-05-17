@@ -37,8 +37,8 @@ char *sh_strchr(const char *str, int z);
 int sh_envsize(void);
 
 /* env2.c*/
-int sh_cus_setenv(const char *name, const char *value, int overwrite);
-int sh_cus_unsetenv(const char *name);
+int sh_cus_setenv(const char *varname, const char *val, int e);
+int sh_cus_unsetenv(const char *varname);
 
 /* error.c*/
 void sh_setenv(char **args);
