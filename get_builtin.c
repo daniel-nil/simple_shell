@@ -2,31 +2,31 @@
 
 /**
  * sh_exec_builtin - handles builtin functions
- * @tokens: tokenized commands
+ * @tok: tokenized commands
  * @env: contains values of environ
  */
-void sh_exec_builtin(char **tokens, char **env)
+void sh_exec_builtin(char **tok, char **env)
 {
-	if (sh_strcmp(tokens[0], "exit") == 0)
+	if (sh_strcmp(tok[0], "exit") == 0)
 	{
-		sh_exit(tokens);
+		sh_exit(tok);
 	}
-	else if (sh_strcmp(tokens[0], "env") == 0)
+	else if (sh_strcmp(tok[0], "env") == 0)
 	{
 		sh_env(env);
 	}
 
-	else if (sh_strcmp(tokens[0], "cd") == 0)
+	else if (sh_strcmp(tok[0], "cd") == 0)
 	{
-		sh_cdexec(tokens);
+		sh_cdexec(tok);
 	}
 
-	else if (sh_strcmp(tokens[0], "setenv") == 0)
+	else if (sh_strcmp(tok[0], "setenv") == 0)
 	{
-		sh_setenv(tokens);
+		sh_setenv(tok);
 	}
-	else if (sh_strcmp(tokens[0], "unsetenv") == 0)
+	else if (sh_strcmp(tok[0], "unsetenv") == 0)
 	{
-		sh_unsetenv(tokens);
+		sh_unsetenv(tok);
 	}
 }
