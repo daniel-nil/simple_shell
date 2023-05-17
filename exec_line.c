@@ -2,72 +2,72 @@
 
 /**
  * sh_buffer - allocates memory
- * @buf_size: memory size
+ * @b_size: memory size
  * Return: allocated memory address
  */
 
-char *sh_buffer(size_t buf_size)
+char *sh_buffer(size_t b_size)
 {
-	char *buf = (char *) malloc(buf_size);
+	char *b = (char *) malloc(b_size);
 
-	if (buf == NULL)
+	if (b == NULL)
 	{
 		errno = ENOMEM;
 		return (NULL);
 	}
-	return (buf);
+	return (b);
 }
 
 /**
  * sh_exbuffer - increases size of allocated memory
- * @buf_size: memory size
- * @buf: pointer to allocated memory
+ * @b_size: memory size
+ * @b: pointer to allocated memory
  * Return: newly allocated memory address
  */
-char *sh_exbuffer(char *buf, size_t buf_size)
+char *sh_exbuffer(char *b, size_t b_size)
 {
-	char *newBuf = (char *) sh_realloc(buf, buf_size);
+	char *new_b = (char *) sh_realloc(b, b_size);
 
-	buf_size *= 2;
-	if (newBuf == NULL)
+	b_size *= 2;
+	if (new_b == NULL)
 	{
-		free(buf);
+		free(b);
 		errno = ENOMEM;
 		return (NULL);
 	}
-	return (newBuf);
+	return (new_b);
 }
 
 /**
  * sh_checkempty - checks if empty line is passed
  * @len: length of string
- * @buf: pointer to allocated memory
+ * @b: pointer to allocated memory
  * Return: newly allocated memory address
  */
-int sh_checkempty(ssize_t len, char *buf)
+int sh_checkempty(ssize_t len, char *b)
 {
-	return (len == 0 || (len == 1 && buf[0] == '\n'));
+	return (len == 0 || (len == 1 && b[0] == '\n'));
 }
 
 /**
  * sh_handleempty - handles empty line passed
- * @lineptr: double pointer
- * @buf: pointer to allocated memory
+ * @lptr: double pointer
+ * @b: pointer to allocated memory
  * Return: -1
  */
-int sh_handleempty(char *buf, char **lineptr)
+int sh_handleempty(char *b, char **lptr)
 {
-	free(buf);
-	*lineptr = NULL;
+	free(b);
+	*lptr = NULL;
 	return (-1);
 }
 
 /**
  * sh_terminator - terminates the buffer
  * @len: length of string
- * @buf: pointer to allocated memory
+ * @b: pointer to allocated memory
  */
-void sh_terminator(ssize_t len, char *buf)
+void sh_terminator(ssize_t len, char *b)
 {
-	buf[len] = '\0';
+	b[len] = '\0';
 }
