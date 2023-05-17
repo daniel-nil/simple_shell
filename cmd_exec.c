@@ -2,29 +2,29 @@
 
 /**
  * sh_writer - opens shell scripts in non-intective mode
- * @argc: argc
- * @argv: argv
+ * @ac: argc
+ * @av: argv
  * Return: 0 on success
  */
-int sh_writer(int argc, char **argv)
+int sh_writer(int ac, char **av)
 {
 	char *input = NULL;
-	char *tokens[MAXITOKEN];
-	int num_tokens;
+	char *tok[MAXITOKEN];
+	int num_tok;
 	size_t input_size = 0;
 	FILE *file;
 
-	if (argc != 2)
+	if (ac != 2)
 	{
 		char error_message[] = "Usage: ";
 
 		write(STDERR_FILENO, error_message, sizeof(error_message) - 1);
-		write(STDERR_FILENO, argv[0], strlen(argv[0]));
+		write(STDERR_FILENO, av[0], strlen(av[0]));
 		write(STDERR_FILENO, " filename\n", 10);
 		exit(1);
 	}
 
-	file = fopen(argv[1], "r");
+	file = fopen(av[1], "r");
 	if (file == NULL)
 	{
 		perror("fopen");
@@ -33,10 +33,10 @@ int sh_writer(int argc, char **argv)
 
 	while (getline(&input, &input_size, file) != -1)
 	{
-		num_tokens = tokenize(input, tokens, MAXITOKEN);
-		if (num_tokens > 0)
+		num_tok = tokenize(input, tok, MAXITOKEN);
+		if (num_tok > 0)
 		{
-			execute(tokens);
+			execute(tok);
 		}
 	}
 	free(input);
