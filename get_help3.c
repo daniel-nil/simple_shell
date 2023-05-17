@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * sh_memcpy - copies bytes from memory
- * @dest: a pointer to the destination buffer
- * @src: a pointer to the source buffer
- * @x: the number of bytes to copy.
- * Return: void pointer to the destination buffer.
+ * sh_memcpy - duplicate memcpy
+ * @dest: destination buffer
+ * @src: source buffer
+ * @x: bytes to copy
+ * Return: void
  */
 void *sh_memcpy(void *dest, const void *src, size_t x)
 {
@@ -21,10 +21,10 @@ void *sh_memcpy(void *dest, const void *src, size_t x)
 }
 
 /**
- * sh_realloc - changes size of memory block
- * @p: pointer to the previously allocated memory block
- * @size: new size to allocate
- * Return: a void pointer to the newly allocated memory block.
+ * sh_realloc - duplicate realloc
+ * @p: pointer
+ * @size: new size
+ * Return: void
  */
 void *sh_realloc(void *p, size_t size)
 {
@@ -52,9 +52,8 @@ void *sh_realloc(void *p, size_t size)
 }
 
 /**
- * shell_env -  prints environment variable
- * takes no arguments
- * Return: 0 on success
+ * shell_env -  environment printer
+ * Return: 0
  */
 int shell_env(void)
 {
