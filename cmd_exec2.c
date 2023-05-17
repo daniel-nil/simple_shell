@@ -6,17 +6,17 @@
  */
 void sh_semicolon(char *input)
 {
-	char *commands[MAXIARGS];
+	char *cmd[MAXIARGS];
 	char *args[MAXIARGS];
 	pid_t pid;
-	int j, status;
+	int x, status;
 
-	sh_del_token(input, commands, MAXITOKEN, ";");
+	sh_del_token(input, cmd, MAXITOKEN, ";");
 
 
-	for (j = 0; commands[j] != NULL; j++)
+	for (x = 0; cmd[x] != NULL; x++)
 	{
-		sh_del_token(commands[j], args, MAXITOKEN, " \t\n");
+		sh_del_token(cmd[x], args, MAXITOKEN, " \t\n");
 		if (args[0] != NULL)
 		{
 			pid = fork();
@@ -44,22 +44,22 @@ void sh_semicolon(char *input)
 /**
  * sh_del_token - breaks a string into tokens using strtok() function
  * @input: input string that needs to be tokenized.
- * @tokens: array that will hold the resulting tokens
- * @max_tokens: max no of tokens that can be extracted from the input string
- * @delim: delimiter string
+ * @tok: array that will hold the resulting tokens
+ * @maxitok: max no of tokens that can be extracted from the input string
+ * @del: delimiter string
  * Return: number of tokens
  */
-int sh_del_token(char *input, char **tokens, int max_tokens, char *delim)
+int sh_del_token(char *input, char **tok, int maxitok, char *del)
 {
-	int num_tokens = 0;
-	char *token = strtok(input, delim);
+	int numtok = 0;
+	char *x = strtok(input, del);
 
-	while (token != NULL && num_tokens < max_tokens)
+	while (x != NULL && numtok < maxitok)
 	{
-		tokens[num_tokens] = token;
-		num_tokens++;
-		token = strtok(NULL, delim);
+		tok[numtok] = x;
+		numtok++;
+		x = strtok(NULL, del);
 	}
-	tokens[num_tokens] = NULL;
-	return (num_tokens);
+	tok[numtok] = NULL;
+	return (numtok);
 }
