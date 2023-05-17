@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * sh_semicolon - handles ";" separator
- * @input: input string that needs to be tokenized
+ * sh_semicolon - handles ";" sep
+ * @input: input string
  */
 void sh_semicolon(char *input)
 {
@@ -42,12 +42,12 @@ void sh_semicolon(char *input)
 }
 
 /**
- * sh_del_token - breaks a string into tokens using strtok() function
- * @input: input string that needs to be tokenized.
- * @tok: array that will hold the resulting tokens
- * @maxitok: max no of tokens that can be extracted from the input string
- * @del: delimiter string
- * Return: number of tokens
+ * sh_del_token - splits string into tokens
+ * @input: input string
+ * @tok: holds the result token
+ * @maxitok: maximum no of tokens
+ * @del: delimiter
+ * Return: no of tokens
  */
 int sh_del_token(char *input, char **tok, int maxitok, char *del)
 {
