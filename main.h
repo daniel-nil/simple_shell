@@ -33,7 +33,7 @@ char *sh_finder(char *cmd, L_LIST *p_list);
 
 /* env1.c*/
 int sh_putenv(char *str);
-char *sh_strchr(const char *str, int c);
+char *sh_strchr(const char *str, int z);
 int sh_envsize(void);
 
 /* env2.c*/
