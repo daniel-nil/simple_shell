@@ -65,7 +65,7 @@ unsigned int sh_delim(char c, char *delim);
 char *sh_strtok(char *srcString, char *delim);
 
 /* cmd_exec.c*/
-int sh_writer(int argc, char **argv);
+int sh_writer(int ac, char **av);
 
 /* cmd_exec2.c*/
 void sh_semicolon(char *input);
