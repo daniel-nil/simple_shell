@@ -79,10 +79,10 @@ void sh_stderror(char *str);
 int sh_strcmp(const char *s1, const char *s2);
 
 /*get_help2*/
-char *sh_constr(char *str1, char *str2);
+char *sh_constr(char *s1, char *s2);
 char *sh_strcpy(char *dest, const char *src);
 char *sh_strcat(char *dest, const char *src);
-int sh_strncmp(const char *s1, const char *s2, size_t n);
+int sh_strncmp(const char *s1, const char *s2, size_t x);
 char *sh_strdup(const char *str);
 
 /*get_help3*/
