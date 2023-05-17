@@ -6,17 +6,17 @@
  */
 void sh_semicolon(char *input)
 {
-	char *commands[MAX_ARGS];
-	char *args[MAX_ARGS];
+	char *commands[MAXIARGS];
+	char *args[MAXIARGS];
 	pid_t pid;
 	int j, status;
 
-	sh_del_token(input, commands, MAX_NUM_TOKENS, ";");
+	sh_del_token(input, commands, MAXITOKEN, ";");
 
 
 	for (j = 0; commands[j] != NULL; j++)
 	{
-		sh_del_token(commands[j], args, MAX_NUM_TOKENS, " \t\n");
+		sh_del_token(commands[j], args, MAXITOKEN, " \t\n");
 		if (args[0] != NULL)
 		{
 			pid = fork();
