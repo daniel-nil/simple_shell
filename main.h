@@ -48,11 +48,11 @@ void sh_env(char **env);
 int sh_cdexec(char **tok);
 
 /* exec_line.c*/
-int sh_checkempty(ssize_t len, char *buf);
-int sh_handleempty(char *buf, char **lineptr);
-void sh_terminator(ssize_t len, char *buf);
-char *sh_buffer(size_t buf_size);
-char *sh_exbuffer(char *buf, size_t buf_size);
+int sh_checkempty(ssize_t len, char *b);
+int sh_handleempty(char *b, char **lptr);
+void sh_terminator(ssize_t len, char *b);
+char *sh_buffer(size_t b_size);
+char *sh_exbuffer(char *b, size_t b_size);
 
 /* get_builtin.c*/
 void sh_exec_builtin(char **tokens, char **env);
