@@ -7,9 +7,9 @@
 char *sh_reader()
 {
 	char *input = NULL;
-	size_t input_size = 0;
+	size_t size = 0;
 
-	if (getline(&input, &input_size, stdin) == -1)
+	if (getline(&input, &size, stdin) == -1)
 	{
 		free(input);
 		return (NULL);
@@ -35,14 +35,14 @@ void sh_printer(char *str)
  */
 int sh_strlen(const char *str)
 {
-	int length = 0;
+	int l = 0;
 
 	while (*str != '\0')
 	{
-		length++;
+		l++;
 		str++;
 	}
-	return (length);
+	return (l);
 }
 
 /**
@@ -58,16 +58,16 @@ void sh_stderror(char *str)
 
 /**
  * sh_strcmp - compares two strings and return their difference
- * @str1: the string compared
- * @str2: the second string compared
+ * @s1: the string compared
+ * @s2: the second string compared
  * Return: the diff btwn the ASCII values of the characters pointed by str
  */
-int sh_strcmp(const char *str1, const char *str2)
+int sh_strcmp(const char *s1, const char *s2)
 {
-	while (*str1 && *str2 && *str1 == *str2)
+	while (*s1 && *s2 && *s1 == *s2)
 	{
-		str1++;
-		str2++;
+		s1++;
+		s2++;
 	}
-	return (*str1 - *str2);
+	return (*s1 - *s2);
 }
