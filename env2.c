@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * sh_cus_setenv - clone of setenv
+ * sh_cus_setenv - duplicate of setenv
  * @varname: variable name
- * @val: new variable value
- * @e: checks if variable exists or not
+ * @val: new variable
+ * @e: checks for var existance
  * Return: 0 or -1
  */
 int sh_cus_setenv(const char *varname, const char *val, int e)
@@ -47,7 +47,7 @@ int sh_cus_setenv(const char *varname, const char *val, int e)
 }
 
 /**
- * sh_cus_unsetenv - clone of setenv
+ * sh_cus_unsetenv - duplivate of setenv
  * @varname: variable name
  * Return: 0 or -1
  */
