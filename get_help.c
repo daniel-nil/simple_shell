@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * sh_reader - reads user input from stdin using getline()
- * Return: Returns input from stdout
+ * sh_reader - reads input using getline
+ * Return: input
  */
 char *sh_reader()
 {
@@ -18,8 +18,8 @@ char *sh_reader()
 }
 
 /**
- * sh_printer - writes/print string to stdin
- * @str: string written
+ * sh_printer - writes string to stdin
+ * @str: string
  */
 void sh_printer(char *str)
 {
@@ -29,9 +29,9 @@ void sh_printer(char *str)
 }
 
 /**
- * sh_strlen -  gets no. of characters in a string
- * @str: string whose length is calculated
- * Return: Length of string
+ * sh_strlen -  gets char in string
+ * @str: string
+ * Return: string len
  */
 int sh_strlen(const char *str)
 {
@@ -46,8 +46,8 @@ int sh_strlen(const char *str)
 }
 
 /**
- * sh_stderror - writes string to stderr
- * @str: Error message printed
+ * sh_stderror - puts string to stderr
+ * @str: message
  */
 void sh_stderror(char *str)
 {
@@ -57,10 +57,10 @@ void sh_stderror(char *str)
 }
 
 /**
- * sh_strcmp - compares two strings and return their difference
- * @s1: the string compared
- * @s2: the second string compared
- * Return: the diff btwn the ASCII values of the characters pointed by str
+ * sh_strcmp - duplicate strcmp
+ * @s1: string compared
+ * @s2: second string compared
+ * Return: string
  */
 int sh_strcmp(const char *s1, const char *s2)
 {
