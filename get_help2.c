@@ -1,9 +1,9 @@
 #include "main.h"
 /**
- * sh_constr - joins two strings together
+ * sh_constr - combines two strings
  * @s1: string concetenated
- * @s2: string joined to str1
- * Return: str1 and str2 combined
+ * @s2: string to be combined
+ * Return: comibination
  */
 char *sh_constr(char *s1, char *s2)
 {
@@ -22,10 +22,10 @@ char *sh_constr(char *s1, char *s2)
 }
 
 /**
- * sh_strcpy - copies contents of one string to another string
- * @dest: copying destination
- * @src: string copied
- * Return: string copied
+ * sh_strcpy - duplicate strcpy
+ * @dest: destination
+ * @src: string to be copied
+ * Return: src
  */
 char *sh_strcpy(char *dest, const char *src)
 {
@@ -42,10 +42,10 @@ char *sh_strcpy(char *dest, const char *src)
 }
 
 /**
- * sh_strcat - concatenates two strings
+ * sh_strcat - duplicate strcat
  * @dest: destiation
- * @src: string constant
- * Return: joined string
+ * @src: string
+ * Return: combination
  */
 char *sh_strcat(char *dest, const char *src)
 {
@@ -66,11 +66,11 @@ char *sh_strcat(char *dest, const char *src)
 }
 
 /**
- * sh_strncmp - compares two strings, checks if they are equal
- * @s1: string one compared
- * @s2: string compared with string one
- * @n: compares the first n characters of s1 and s2.
- * Return: 0 on sucess
+ * sh_strncmp - duplicate strncmp
+ * @s1: string to be compared
+ * @s2: string to be compared with
+ * @n: comparer
+ * Return: 0
  */
 int sh_strncmp(const char *s1, const char *s2, size_t x)
 {
@@ -87,10 +87,11 @@ int sh_strncmp(const char *s1, const char *s2, size_t x)
 	}
 	return (0);
 }
+
 /**
- * my_strdup - copies the contents of the input string str to the new memory
- * @str: string copied
- * Return: a pointer to the new string.
+ * my_strdup - duplicate strdup
+ * @str: string
+ * Return: pointer
  */
 char *sh_strdup(const char *str)
 {
