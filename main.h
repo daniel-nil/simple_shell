@@ -55,7 +55,7 @@ char *sh_buffer(size_t b_size);
 char *sh_exbuffer(char *b, size_t b_size);
 
 /* get_builtin.c*/
-void sh_exec_builtin(char **tokens, char **env);
+void sh_exec_builtin(char **tok, char **env);
 
 /* get_line.c*/
 ssize_t sh_getline(char **lineptr, size_t *n, int fd);
