@@ -12,11 +12,8 @@
 #include <unistd.h>
 
 
-#define MAX_INPUT_SIZE 1024
-#define MAX_TOKEN_SIZE 64
-#define MAX_NUM_TOKENS 64
-#define MAX_ARGS 64
-#define MAX_PATH 1024
+#define MAXITOKEN 64
+#define MAXIARGS 64
 #define DELIMITERS " \t\r\n\a"
 
 extern char **environ;
@@ -25,21 +22,14 @@ typedef struct linkedList
 {
 	char *str;
 	struct linkedList *next;
-} LL;
-
-typedef struct alias_node
-{
-	char *name;
-	char *value;
-	struct alias_node *next;
-} alias_node;
+} L_LIST;
 
 /* cd_shell.c*/
-LL *the_path();
-void the_node(LL **head_ref, char *str);
-void sh_freelist(LL *head);
+L_LIST *the_path();
+void the_node(L_LIST **head_ref, char *str);
+void sh_freelist(L_LIST *head);
 char *sh_getenv(const char *name);
-char *sh_finder(char *command, LL *path_list);
+char *sh_finder(char *command, L_LIST *path_list);
 
 /* env1.c*/
 int sh_putenv(char *str);
