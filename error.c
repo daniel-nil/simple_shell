@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * sh_exit - exit builtin
- * @tok: tokenized commands
+ * sh_exit - skips builtin
+ * @tok: tokenizer
  */
 void sh_exit(char **tok)
 {
@@ -29,8 +29,8 @@ void sh_exit(char **tok)
 }
 
 /**
- * sh_env - env builtin
- * @env: environment variable
+ * sh_env - the builtin
+ * @env: environment
  */
 void sh_env(char **env)
 {
@@ -46,9 +46,9 @@ void sh_env(char **env)
 }
 
 /**
- * sh_cdexec - cd builtin
- * @tok: tokenized commands
- * Return: 0 on success
+ * sh_cdexec - cd builter
+ * @tok: tokenizer
+ * Return: 0
  */
 int sh_cdexec(char **tok)
 {
@@ -94,8 +94,8 @@ int sh_cdexec(char **tok)
 }
 
 /**
- * sh_setenv - setenv builtin
- * @args: tokenized commands
+ * sh_setenv - setenv
+ * @args: tokenizer commands
  * Return: 0 or 1
  */
 void sh_setenv(char **args)
@@ -116,8 +116,8 @@ void sh_setenv(char **args)
 }
 
 /**
- * sh_unsetenv - cd builtin
- * @args: tokenized commands
+ * sh_unsetenv - builtin unsetter
+ * @args: tokenizer
  * Return: 0 or 1
  */
 void sh_unsetenv(char **args)
