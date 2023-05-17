@@ -1,24 +1,24 @@
 #include "main.h"
 /**
  * sh_constr - joins two strings together
- * @str1: string concetenated
- * @str2: string joined to str1
+ * @s1: string concetenated
+ * @s2: string joined to str1
  * Return: str1 and str2 combined
  */
-char *sh_constr(char *str1, char *str2)
+char *sh_constr(char *s1, char *s2)
 {
-	int len1 = sh_strlen(str1);
-	int len2 = sh_strlen(str2);
-	char *result = malloc(len1 + len2 + 1);
+	int l1 = sh_strlen(s1);
+	int l2 = sh_strlen(s2);
+	char *r = malloc(l1 + l2 + 1);
 
-	if (result == NULL)
+	if (r == NULL)
 	{
 		perror("Failed to allocate memory for concatenated string");
 		exit(1);
 	}
-	result = sh_strcpy(result, str1);
-	result = sh_strcat(result, str2);
-	return (result);
+	r = sh_strcpy(r, s1);
+	r = sh_strcat(r, s2);
+	return (r);
 }
 
 /**
@@ -29,7 +29,7 @@ char *sh_constr(char *str1, char *str2)
  */
 char *sh_strcpy(char *dest, const char *src)
 {
-	char *originalDest = dest;
+	char *x = dest;
 
 	while (*src != '\0')
 	{
@@ -38,7 +38,7 @@ char *sh_strcpy(char *dest, const char *src)
 		src++;
 	}
 	*dest = '\0';
-	return (originalDest);
+	return (x);
 }
 
 /**
@@ -49,7 +49,7 @@ char *sh_strcpy(char *dest, const char *src)
  */
 char *sh_strcat(char *dest, const char *src)
 {
-	char *originalDest = dest;
+	char *x = dest;
 
 	while (*dest != '\0')
 	{
@@ -62,7 +62,7 @@ char *sh_strcat(char *dest, const char *src)
 		src++;
 	}
 	*dest = '\0';
-	return (originalDest);
+	return (x);
 }
 
 /**
@@ -72,11 +72,11 @@ char *sh_strcat(char *dest, const char *src)
  * @n: compares the first n characters of s1 and s2.
  * Return: 0 on sucess
  */
-int sh_strncmp(const char *s1, const char *s2, size_t n)
+int sh_strncmp(const char *s1, const char *s2, size_t x)
 {
-	size_t i;
+	size_t z;
 
-	for (i = 0; i < n; i++)
+	for (z = 0; z < x; z++)
 	{
 		if (*s1 == '\0' || *s1 != *s2)
 		{
@@ -95,10 +95,10 @@ int sh_strncmp(const char *s1, const char *s2, size_t n)
 char *sh_strdup(const char *str)
 {
 	size_t len = sh_strlen(str) + 1;
-	char *new_str = malloc(len);
+	char *new_s = malloc(len);
 
-	if (new_str == NULL)
+	if (new_s == NULL)
 		return (NULL);
-	memcpy(new_str, str, len);
-	return (new_str);
+	memcpy(new_s, str, len);
+	return (new_s);
 }
