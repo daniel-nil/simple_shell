@@ -36,12 +36,10 @@ void sh_freelist(L_LIST *head);
 char *sh_getenv(const char *varname);
 char *sh_finder(char *cmd, L_LIST *p_list);
 
-/* env1.c*/
+/* env.c*/
 int sh_putenv(char *str);
 char *sh_strchr(const char *str, int z);
 int sh_envsize(void);
-
-/* env2.c*/
 int sh_cus_setenv(const char *varname, const char *val, int e);
 int sh_cus_unsetenv(const char *varname);
 
@@ -59,20 +57,16 @@ void sh_terminator(ssize_t len, char *b);
 char *sh_buffer(size_t b_size);
 char *sh_exbuffer(char *b, size_t b_size);
 
-/* get_builtin.c*/
-void sh_exec_builtin(char **tok, char **env);
-
 /* get_line.c*/
 ssize_t sh_getline(char **lptr, size_t *x, int fd);
 
 /* split_shell.c*/
 unsigned int sh_delim(char c, char *del);
 char *sh_strtok(char *ssrc, char *del);
+void sh_exec_builtin(char **tok, char **env);
 
 /* cmd_exec.c*/
 int sh_writer(int ac, char **av);
-
-/* cmd_exec2.c*/
 void sh_semicolon(char *input);
 int sh_del_token(char *input, char **tok, int maxitok, char *del);
 
